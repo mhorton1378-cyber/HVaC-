@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
+    "target": "esnext",
+    "strict": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "noEmit": true
+  },
+  "include": ["src/**/*", "remotion.config.ts"]
+}
