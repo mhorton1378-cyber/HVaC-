@@ -4,8 +4,7 @@
   "description": "AION HVAC Training – Week 1 Fundamentals & Safety",
   "scripts": {
     "start": "npx remotion studio src/index.ts",
-    "render:episode1": "npx remotion render src/index.ts TrainingEpisode1 out/training-episode-1.mp4 --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --concurrency=4",
-    "render:week1": "npx remotion render src/index.ts HVACWeek1Fundamentals out/hvac-week1-fundamentals.mp4 --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --concurrency=4"
+    "render:episode1": "npx remotion render src/index.ts TrainingEpisode1 out/training-episode-1.mp4 --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --concurrency=4"
   },
   "dependencies": {
     "@remotion/cli": "4.0.483",
