@@ -2,10 +2,13 @@ import React from "react";
 import {
   AbsoluteFill,
   Series,
+  Sequence,
   useCurrentFrame,
   interpolate,
   spring,
   useVideoConfig,
+  Audio,
+  staticFile,
 } from "remotion";
 
 import { OutdoorDayBG, DarkTechBG, WarmIndoorBG } from "../components/diagnostic/Background";
@@ -333,6 +336,10 @@ const HomeownerComplaint: React.FC = () => {
       </svg>
 
       {/* Dialogue */}
+      <Sequence from={20}>
+        <Audio src={staticFile("voice/homeowner-complaint.mp3")} />
+      </Sequence>
+
       <DialogueBubble
         speaker="homeowner"
         text="My AC has been running all day and it's still 82 degrees in the house."
@@ -553,12 +560,14 @@ const CapacitorReveal: React.FC = () => {
 interface DialogueSceneProps {
   speaker: "tech" | "homeowner";
   text: string;
+  voiceFile: string;
   techSmiling?: boolean;
 }
 
 const DialogueScene: React.FC<DialogueSceneProps> = ({
   speaker,
   text,
+  voiceFile,
   techSmiling = false,
 }) => {
   const frame = useCurrentFrame();
@@ -590,6 +599,10 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
           <HomeownerFrustrated x={740} y={1600} scale={0.78} />
         )}
       </svg>
+
+      <Sequence from={12}>
+        <Audio src={staticFile(voiceFile)} />
+      </Sequence>
 
       <DialogueBubble
         speaker={speaker}
@@ -913,28 +926,43 @@ export const NoCoolCapacitor: React.FC = () => {
 
         {/* Dialogue exchange – each line is its own sequence */}
         <Series.Sequence durationInFrames={DUR.dialogue1}>
-          <DialogueScene speaker="tech" text="Good news. Your compressor isn't bad." />
+          <DialogueScene
+            speaker="tech"
+            text="Good news. Your compressor isn't bad."
+            voiceFile="voice/tech-good-news.mp3"
+          />
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={DUR.dialogue2}>
-          <DialogueScene speaker="homeowner" text="Really?" techSmiling />
+          <DialogueScene
+            speaker="homeowner"
+            text="Really?"
+            voiceFile="voice/homeowner-really.mp3"
+            techSmiling
+          />
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={DUR.dialogue3}>
           <DialogueScene
             speaker="tech"
             text="Your capacitor has completely failed. The compressor can't start."
+            voiceFile="voice/tech-capacitor.mp3"
           />
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={DUR.dialogue4}>
-          <DialogueScene speaker="homeowner" text="So I don't need a whole new system?" />
+          <DialogueScene
+            speaker="homeowner"
+            text="So I don't need a whole new system?"
+            voiceFile="voice/homeowner-no-system.mp3"
+          />
         </Series.Sequence>
 
         <Series.Sequence durationInFrames={DUR.dialogue5}>
           <DialogueScene
             speaker="tech"
             text="Nope. Replace the capacitor, verify amperage, check refrigerant pressures—and you're back in business."
+            voiceFile="voice/tech-nope.mp3"
             techSmiling
           />
         </Series.Sequence>
