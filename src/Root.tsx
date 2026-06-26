@@ -15,7 +15,7 @@ export const Root: React.FC = () => {
         height={1080}
       />
       <Composition
-        id="NoCool_FailedCapacitor"
+        id="NoCool-FailedCapacitor"
         component={NoCoolCapacitor}
         durationInFrames={NC_FRAMES}
         fps={30}
