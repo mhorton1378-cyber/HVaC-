@@ -337,7 +337,7 @@ const HomeownerComplaint: React.FC = () => {
 
       {/* Dialogue */}
       <Sequence from={20}>
-        <Audio src={staticFile("voice/homeowner-complaint.mp3")} />
+        <Audio src={staticFile("voice/homeowner-complaint.mp3")} volume={1} />
       </Sequence>
 
       <DialogueBubble
@@ -601,7 +601,7 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
       </svg>
 
       <Sequence from={12}>
-        <Audio src={staticFile(voiceFile)} />
+        <Audio src={staticFile(voiceFile)} volume={1} />
       </Sequence>
 
       <DialogueBubble
