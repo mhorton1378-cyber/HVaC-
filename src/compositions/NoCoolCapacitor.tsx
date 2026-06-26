@@ -337,7 +337,7 @@ const HomeownerComplaint: React.FC = () => {
 
       {/* Dialogue */}
       <Sequence from={20}>
-        <Audio src={staticFile("voice/homeowner-complaint.mp3")} volume={1} />
+        <Audio src={staticFile("voice/homeowner-complaint.wav")} volume={2} />
       </Sequence>
 
       <DialogueBubble
@@ -601,7 +601,7 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
       </svg>
 
       <Sequence from={12}>
-        <Audio src={staticFile(voiceFile)} volume={1} />
+        <Audio src={staticFile(voiceFile)} volume={2} />
       </Sequence>
 
       <DialogueBubble
@@ -929,7 +929,7 @@ export const NoCoolCapacitor: React.FC = () => {
           <DialogueScene
             speaker="tech"
             text="Good news. Your compressor isn't bad."
-            voiceFile="voice/tech-good-news.mp3"
+            voiceFile="voice/tech-good-news.wav"
           />
         </Series.Sequence>
 
@@ -937,7 +937,7 @@ export const NoCoolCapacitor: React.FC = () => {
           <DialogueScene
             speaker="homeowner"
             text="Really?"
-            voiceFile="voice/homeowner-really.mp3"
+            voiceFile="voice/homeowner-really.wav"
             techSmiling
           />
         </Series.Sequence>
@@ -946,7 +946,7 @@ export const NoCoolCapacitor: React.FC = () => {
           <DialogueScene
             speaker="tech"
             text="Your capacitor has completely failed. The compressor can't start."
-            voiceFile="voice/tech-capacitor.mp3"
+            voiceFile="voice/tech-capacitor.wav"
           />
         </Series.Sequence>
 
@@ -954,7 +954,7 @@ export const NoCoolCapacitor: React.FC = () => {
           <DialogueScene
             speaker="homeowner"
             text="So I don't need a whole new system?"
-            voiceFile="voice/homeowner-no-system.mp3"
+            voiceFile="voice/homeowner-no-system.wav"
           />
         </Series.Sequence>
 
@@ -962,7 +962,7 @@ export const NoCoolCapacitor: React.FC = () => {
           <DialogueScene
             speaker="tech"
             text="Nope. Replace the capacitor, verify amperage, check refrigerant pressures—and you're back in business."
-            voiceFile="voice/tech-nope.mp3"
+            voiceFile="voice/tech-nope.wav"
             techSmiling
           />
         </Series.Sequence>

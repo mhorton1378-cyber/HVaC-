@@ -1,5 +1,9 @@
 import React from "react";
 
+// ─── 2.5D Isometric Outdoor Scene ────────────────────────────────────────────
+// House shown with front face + right side + roof visible (parallel projection).
+// Ground plane recedes in perspective. All elements have gradient shading.
+
 export const OutdoorDayBG: React.FC = () => (
   <svg
     viewBox="0 0 1080 1920"
@@ -7,140 +11,283 @@ export const OutdoorDayBG: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <linearGradient id="bg_sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#0288d1" />
-        <stop offset="55%" stopColor="#4fc3f7" />
-        <stop offset="100%" stopColor="#fff9c4" />
+      {/* Sky */}
+      <linearGradient id="bg2_sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#1565c0" />
+        <stop offset="45%" stopColor="#42a5f5" />
+        <stop offset="100%" stopColor="#ffe57f" />
       </linearGradient>
-      <linearGradient id="bg_wall" x1="0" y1="0" x2="0" y2="1">
+      {/* Ground grass */}
+      <linearGradient id="bg2_grass" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#66bb6a" />
+        <stop offset="100%" stopColor="#388e3c" />
+      </linearGradient>
+      {/* House front wall shading */}
+      <linearGradient id="bg2_frontWall" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stopColor="#f5ede0" />
-        <stop offset="100%" stopColor="#e0d0ba" />
+        <stop offset="60%" stopColor="#ede0cc" />
+        <stop offset="100%" stopColor="#d8cbb8" />
       </linearGradient>
-      <linearGradient id="bg_lawn" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#6dbf67" />
-        <stop offset="100%" stopColor="#43a047" />
+      {/* House side wall (darker — in shadow) */}
+      <linearGradient id="bg2_sideWall" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#c9b89e" />
+        <stop offset="100%" stopColor="#b0a088" />
       </linearGradient>
-      <linearGradient id="bg_conc" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#d4c9b0" />
-        <stop offset="100%" stopColor="#bdb09a" />
+      {/* Roof front face */}
+      <linearGradient id="bg2_roofFront" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#8d6e63" />
+        <stop offset="100%" stopColor="#6d4c41" />
       </linearGradient>
-      <radialGradient id="bg_sun" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#fff176" />
-        <stop offset="65%" stopColor="#fdd835" />
-        <stop offset="100%" stopColor="#f9a825" stopOpacity="0" />
+      {/* Roof side face (lit from above) */}
+      <linearGradient id="bg2_roofSide" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#a1887f" />
+        <stop offset="100%" stopColor="#795548" />
+      </linearGradient>
+      {/* Concrete pad */}
+      <linearGradient id="bg2_conc" x1="0" y1="0" x2="0.3" y2="1">
+        <stop offset="0%" stopColor="#d6ccb4" />
+        <stop offset="100%" stopColor="#bfb49a" />
+      </linearGradient>
+      {/* Sun */}
+      <radialGradient id="bg2_sun" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#fff9c4" />
+        <stop offset="55%" stopColor="#fdd835" />
+        <stop offset="100%" stopColor="#f57f17" stopOpacity="0" />
       </radialGradient>
-      <radialGradient id="bg_vignette" cx="50%" cy="50%" r="70%">
+      {/* Door */}
+      <linearGradient id="bg2_door" x1="0" y1="0" x2="0.15" y2="1">
+        <stop offset="0%" stopColor="#8d6e63" />
+        <stop offset="100%" stopColor="#4e342e" />
+      </linearGradient>
+      {/* Window glass */}
+      <linearGradient id="bg2_glass" x1="0" y1="0" x2="0.4" y2="1">
+        <stop offset="0%" stopColor="#e3f2fd" stopOpacity="0.9" />
+        <stop offset="40%" stopColor="#90caf9" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#64b5f6" stopOpacity="0.7" />
+      </linearGradient>
+      {/* Vignette */}
+      <radialGradient id="bg2_vig" cx="50%" cy="50%" r="72%">
         <stop offset="0%" stopColor="rgba(0,0,0,0)" />
-        <stop offset="100%" stopColor="rgba(0,0,0,0.38)" />
+        <stop offset="100%" stopColor="rgba(0,0,0,0.42)" />
       </radialGradient>
+      {/* Ambient shadow at base of house */}
+      <linearGradient id="bg2_baseShadow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="rgba(0,0,0,0.22)" />
+        <stop offset="100%" stopColor="rgba(0,0,0,0)" />
+      </linearGradient>
     </defs>
 
-    {/* Sky */}
-    <rect x="0" y="0" width="1080" height="1060" fill="url(#bg_sky)" />
+    {/* ── SKY ── */}
+    <rect x="0" y="0" width="1080" height="1020" fill="url(#bg2_sky)" />
 
-    {/* Sun glow */}
-    <circle cx="870" cy="195" r="145" fill="url(#bg_sun)" />
-    <circle cx="870" cy="195" r="72" fill="#FDD835" />
+    {/* Cloud 1 */}
+    <g opacity="0.82">
+      <ellipse cx="200" cy="220" rx="110" ry="48" fill="white" />
+      <ellipse cx="140" cy="234" rx="75" ry="40" fill="white" />
+      <ellipse cx="268" cy="230" rx="80" ry="36" fill="white" />
+    </g>
+    {/* Cloud 2 (smaller) */}
+    <g opacity="0.65">
+      <ellipse cx="680" cy="160" rx="80" ry="32" fill="white" />
+      <ellipse cx="628" cy="170" rx="52" ry="28" fill="white" />
+      <ellipse cx="726" cy="167" rx="58" ry="26" fill="white" />
+    </g>
+
+    {/* Sun */}
+    <circle cx="920" cy="168" r="130" fill="url(#bg2_sun)" />
+    <circle cx="920" cy="168" r="66" fill="#FDD835" />
     {Array.from({ length: 8 }).map((_, i) => {
       const a = (i * 45 * Math.PI) / 180;
       return (
         <line
           key={i}
-          x1={870 + Math.cos(a) * 92}
-          y1={195 + Math.sin(a) * 92}
-          x2={870 + Math.cos(a) * 136}
-          y2={195 + Math.sin(a) * 136}
+          x1={920 + Math.cos(a) * 85}
+          y1={168 + Math.sin(a) * 85}
+          x2={920 + Math.cos(a) * 128}
+          y2={168 + Math.sin(a) * 128}
           stroke="#FDD835"
           strokeWidth="9"
           strokeLinecap="round"
-          opacity="0.65"
+          opacity="0.6"
         />
       );
     })}
 
-    {/* Roof */}
-    <polygon points="-10,768 540,326 1090,768" fill="#6d4c41" />
-    <polygon points="20,768 540,356 1060,768" fill="#8d6e63" />
-    <rect x="-10" y="756" width="1100" height="22" fill="#5d4037" />
-    <rect x="0" y="768" width="1080" height="14" fill="#ede5d8" />
+    {/* ── ROOF ── */}
+    {/* Roof front left slope */}
+    <polygon
+      points="44,742 472,316 836,742"
+      fill="url(#bg2_roofFront)"
+    />
+    {/* Roof side surface (right) — lit from above, lighter */}
+    <polygon
+      points="836,742 472,316 548,362 982,782"
+      fill="url(#bg2_roofSide)"
+    />
+    {/* Roof fascia / overhang line */}
+    <line x1="44" y1="742" x2="836" y2="742" stroke="#5d4037" strokeWidth="7" />
+    <line x1="836" y1="742" x2="982" y2="782" stroke="#4e342e" strokeWidth="5" />
+    {/* Roof ridge */}
+    <line x1="472" y1="316" x2="548" y2="362" stroke="#4e342e" strokeWidth="5" />
 
-    {/* Chimney */}
-    <rect x="650" y="340" width="85" height="210" fill="#795548" />
-    <rect x="638" y="332" width="110" height="18" fill="#6d4c41" />
+    {/* Chimney — on side roof */}
+    <polygon points="726,480 726,360 774,385 774,506" fill="#795548" />
+    <polygon points="718,355 726,360 774,385 766,380" fill="#8d6e63" />
+    <rect x="716" y="348" width="64" height="14" rx="3" fill="#6d4c41" />
 
-    {/* House wall */}
-    <rect x="0" y="776" width="1080" height="950" fill="url(#bg_wall)" />
-    {Array.from({ length: 24 }).map((_, i) => (
+    {/* ── HOUSE WALLS ── */}
+    {/* Front wall */}
+    <rect x="44" y="738" width="792" height="860" fill="url(#bg2_frontWall)" />
+    {/* Horizontal siding lines on front */}
+    {Array.from({ length: 22 }).map((_, i) => (
       <line
         key={i}
-        x1="0"
-        y1={794 + i * 38}
-        x2="1080"
-        y2={794 + i * 38}
-        stroke="rgba(0,0,0,0.07)"
+        x1="44"
+        y1={758 + i * 38}
+        x2="836"
+        y2={758 + i * 38}
+        stroke="rgba(0,0,0,0.055)"
         strokeWidth="1.5"
       />
     ))}
-    <rect x="0" y="776" width="22" height="950" fill="#ddd0bc" />
-    <rect x="1058" y="776" width="22" height="950" fill="#ddd0bc" />
+    {/* Corner trim left */}
+    <rect x="44" y="738" width="22" height="860" fill="#e0d0b8" />
+    {/* Right wall (side face) */}
+    <polygon
+      points="836,738 982,782 982,1598 836,1598"
+      fill="url(#bg2_sideWall)"
+    />
+    {/* Siding lines on side */}
+    {Array.from({ length: 22 }).map((_, i) => (
+      <line
+        key={i}
+        x1="836"
+        y1={758 + i * 38}
+        x2="982"
+        y2={800 + i * 38}
+        stroke="rgba(0,0,0,0.06)"
+        strokeWidth="1.2"
+      />
+    ))}
 
-    {/* Left window */}
-    <rect x="90" y="820" width="245" height="198" fill="none" stroke="#ccc0a8" strokeWidth="16" rx="6" />
-    <rect x="98" y="828" width="229" height="182" fill="#b3e5fc" rx="4" />
-    <line x1="213" y1="828" x2="213" y2="1010" stroke="#aaa" strokeWidth="6" />
-    <line x1="98" y1="919" x2="327" y2="919" stroke="#aaa" strokeWidth="6" />
-    <rect x="101" y="831" width="225" height="28" fill="#ffe082" opacity="0.55" />
+    {/* ── WINDOWS (front) ── */}
+    {/* Left window frame */}
+    <rect x="112" y="810" width="226" height="188" rx="5" fill="#c8b89e" />
+    <rect x="120" y="818" width="210" height="172" rx="4" fill="url(#bg2_glass)" />
+    {/* Pane dividers */}
+    <line x1="225" y1="818" x2="225" y2="990" stroke="#aaa" strokeWidth="5" />
+    <line x1="120" y1="904" x2="330" y2="904" stroke="#aaa" strokeWidth="5" />
+    {/* Blind peek */}
+    <rect x="122" y="820" width="206" height="26" fill="#fff9c4" opacity="0.5" />
+    {/* Window sill */}
+    <rect x="106" y="986" width="238" height="14" rx="3" fill="#c8b89e" />
 
     {/* Right window */}
-    <rect x="745" y="820" width="245" height="198" fill="none" stroke="#ccc0a8" strokeWidth="16" rx="6" />
-    <rect x="753" y="828" width="229" height="182" fill="#b3e5fc" rx="4" />
-    <line x1="868" y1="828" x2="868" y2="1010" stroke="#aaa" strokeWidth="6" />
-    <line x1="753" y1="919" x2="982" y2="919" stroke="#aaa" strokeWidth="6" />
-    <rect x="756" y="831" width="225" height="28" fill="#ffe082" opacity="0.55" />
+    <rect x="560" y="810" width="226" height="188" rx="5" fill="#c8b89e" />
+    <rect x="568" y="818" width="210" height="172" rx="4" fill="url(#bg2_glass)" />
+    <line x1="673" y1="818" x2="673" y2="990" stroke="#aaa" strokeWidth="5" />
+    <line x1="568" y1="904" x2="778" y2="904" stroke="#aaa" strokeWidth="5" />
+    <rect x="570" y="820" width="206" height="26" fill="#fff9c4" opacity="0.5" />
+    <rect x="554" y="986" width="238" height="14" rx="3" fill="#c8b89e" />
 
-    {/* Front door */}
-    <rect x="428" y="1006" width="224" height="420" fill="#5d4037" rx="8" />
-    <rect x="438" y="1016" width="97" height="148" fill="#6d4c41" rx="4" />
-    <rect x="545" y="1016" width="97" height="148" fill="#6d4c41" rx="4" />
-    <rect x="438" y="1178" width="97" height="148" fill="#6d4c41" rx="4" />
-    <rect x="545" y="1178" width="97" height="148" fill="#6d4c41" rx="4" />
-    <circle cx="505" cy="1228" r="15" fill="#ffd54f" />
-    <circle cx="505" cy="1228" r="8" fill="#ffb300" />
-    <rect x="438" y="1009" width="214" height="44" fill="#b3e5fc" rx="3" opacity="0.75" />
+    {/* Window on side face */}
+    <polygon
+      points="876,840 946,863 946,990 876,967"
+      fill="url(#bg2_glass)"
+      opacity="0.7"
+    />
+    <polygon
+      points="873,836 950,860 950,994 873,970"
+      fill="none"
+      stroke="#c8b89e"
+      strokeWidth="8"
+    />
 
-    {/* Ground / lawn */}
-    <rect x="0" y="1610" width="1080" height="310" fill="url(#bg_lawn)" />
-    <rect x="0" y="1600" width="1080" height="18" fill="#a5d6a7" />
+    {/* ── DOOR ── */}
+    <rect x="424" y="1040" width="208" height="358" rx="6" fill="url(#bg2_door)" />
+    {/* Door panels */}
+    <rect x="436" y="1054" width="86" height="128" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
+    <rect x="534" y="1054" width="86" height="128" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
+    <rect x="436" y="1198" width="86" height="120" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
+    <rect x="534" y="1198" width="86" height="120" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
+    {/* Transom window */}
+    <rect x="436" y="1046" width="184" height="40" rx="3" fill="url(#bg2_glass)" opacity="0.8" />
+    {/* Knob */}
+    <circle cx="502" cy="1230" r="14" fill="#ffd54f" />
+    <circle cx="502" cy="1230" r="8" fill="#ffb300" />
+    <rect x="412" y="1394" width="232" height="8" rx="3" fill="#4e342e" />
 
-    {/* Concrete pad */}
-    <path d="M 0 1600 L 440 1600 L 400 1920 L 0 1920 Z" fill="url(#bg_conc)" />
-    <line x1="0" y1="1730" x2="400" y2="1730" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
-    <line x1="190" y1="1600" x2="178" y2="1920" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
+    {/* ── BASE SHADOW ── */}
+    <rect x="0" y="1590" width="1080" height="28" fill="url(#bg2_baseShadow)" />
 
-    {/* Left shrubs */}
-    <ellipse cx="110" cy="1608" rx="145" ry="82" fill="#2e7d32" />
-    <ellipse cx="55" cy="1603" rx="100" ry="70" fill="#388e3c" />
-    <ellipse cx="185" cy="1614" rx="115" ry="76" fill="#2e7d32" />
-    <ellipse cx="130" cy="1596" rx="82" ry="56" fill="#43a047" />
+    {/* ── GROUND ── */}
+    <rect x="0" y="1600" width="1080" height="320" fill="url(#bg2_grass)" />
+    <rect x="0" y="1596" width="1080" height="14" fill="#81c784" />
 
-    {/* Right shrubs */}
-    <ellipse cx="980" cy="1608" rx="125" ry="76" fill="#2e7d32" />
-    <ellipse cx="1040" cy="1603" rx="88" ry="65" fill="#388e3c" />
+    {/* Concrete / driveway — perspective trapezoid */}
+    <polygon
+      points="0,1596 440,1596 400,1920 0,1920"
+      fill="url(#bg2_conc)"
+    />
+    {/* Concrete joints */}
+    <line x1="0" y1="1720" x2="410" y2="1720" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
+    <line x1="0" y1="1840" x2="390" y2="1840" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
+    <line x1="195" y1="1596" x2="184" y2="1920" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
 
-    {/* Vignette */}
-    <rect x="0" y="0" width="1080" height="1920" fill="url(#bg_vignette)" />
+    {/* Grass blades at concrete edge */}
+    {Array.from({ length: 10 }).map((_, i) => (
+      <rect
+        key={i}
+        x={450 + i * 62}
+        y="1590"
+        width="9"
+        height="18"
+        rx="4"
+        fill="#66bb6a"
+      />
+    ))}
+
+    {/* Left shrub cluster */}
+    <ellipse cx="120" cy="1604" rx="148" ry="84" fill="#2e7d32" />
+    <ellipse cx="58"  cy="1598" rx="98"  ry="70" fill="#388e3c" />
+    <ellipse cx="195" cy="1611" rx="118" ry="76" fill="#2e7d32" />
+    <ellipse cx="130" cy="1590" rx="86"  ry="54" fill="#43a047" />
+    {/* Shrub shadow */}
+    <ellipse cx="138" cy="1614" rx="148" ry="18" fill="rgba(0,0,0,0.2)" />
+
+    {/* Right shrub */}
+    <ellipse cx="990" cy="1604" rx="118" ry="74" fill="#2e7d32" />
+    <ellipse cx="1055" cy="1598" rx="82"  ry="62" fill="#388e3c" />
+    <ellipse cx="990"  cy="1616" rx="118" ry="16" fill="rgba(0,0,0,0.18)" />
+
+    {/* ── VIGNETTE ── */}
+    <rect x="0" y="0" width="1080" height="1920" fill="url(#bg2_vig)" />
   </svg>
 );
 
+// Dark close-up background for diagnostic scenes
 export const DarkTechBG: React.FC = () => (
   <div
     style={{
       position: "absolute",
       inset: 0,
       background:
-        "radial-gradient(ellipse at 50% 40%, #1a2744 0%, #0d1b2e 55%, #060d18 100%)",
+        "radial-gradient(ellipse at 50% 38%, #1a2744 0%, #0d1b2e 55%, #050c18 100%)",
     }}
-  />
+  >
+    {/* Subtle grid lines */}
+    <svg
+      viewBox="0 0 1080 1920"
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.06 }}
+    >
+      {Array.from({ length: 22 }).map((_, i) => (
+        <line key={`h${i}`} x1="0" y1={i * 88} x2="1080" y2={i * 88} stroke="#00d4ff" strokeWidth="1" />
+      ))}
+      {Array.from({ length: 13 }).map((_, i) => (
+        <line key={`v${i}`} x1={i * 90} y1="0" x2={i * 90} y2="1920" stroke="#00d4ff" strokeWidth="1" />
+      ))}
+    </svg>
+  </div>
 );
 
 export const WarmIndoorBG: React.FC = () => (
