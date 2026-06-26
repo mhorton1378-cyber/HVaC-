@@ -15,7 +15,9 @@ export const CondenserUnit: React.FC<CondenserProps> = ({
 }) => (
   <svg
     viewBox="0 0 380 520"
-    style={{ width: "100%", height: "100%", overflow: "visible" }}
+    width={380}
+    height={520}
+    style={{ overflow: "visible" }}
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>

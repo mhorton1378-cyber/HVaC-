@@ -20,8 +20,8 @@ interface CharProps {
 // Shared gradient + filter defs — rendered once per character instance
 const GradDefs: React.FC = () => (
   <defs>
-    <filter id="ch_drop" x="-18%" y="-8%" width="136%" height="130%">
-      <feDropShadow dx="7" dy="12" stdDeviation="10" floodColor="rgba(0,0,0,0.52)" />
+    <filter id="ch_drop" x="-25%" y="-12%" width="150%" height="145%">
+      <feDropShadow dx="10" dy="18" stdDeviation="14" floodColor="rgba(0,0,0,0.65)" />
     </filter>
     {/* Skin: warm highlight top-left, shadow bottom-right */}
     <linearGradient id="ch_skin" x1="0.15" y1="0" x2="0.85" y2="1">
@@ -35,49 +35,50 @@ const GradDefs: React.FC = () => (
       <stop offset="100%" stopColor="#efb865" />
     </radialGradient>
     {/* Hard hat: sky-blue highlight to deep navy */}
-    <linearGradient id="ch_hat" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0%" stopColor="#64b5f6" />
-      <stop offset="38%" stopColor="#1565c0" />
-      <stop offset="100%" stopColor="#0a3580" />
+    {/* Hat: sky-blue highlight at top to deep shadow at bottom */}
+    <linearGradient id="ch_hat" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stopColor="#82c4ff" />
+      <stop offset="30%" stopColor="#1e88e5" />
+      <stop offset="100%" stopColor="#082060" />
     </linearGradient>
-    {/* Tech shirt: lit left edge to dark right */}
-    <linearGradient id="ch_shirt" x1="0.08" y1="0" x2="0.92" y2="1">
-      <stop offset="0%" stopColor="#3f51b5" />
-      <stop offset="45%" stopColor="#1a237e" />
-      <stop offset="100%" stopColor="#060a2e" />
+    {/* Tech shirt: bright left rim, deep right shadow — very visible contrast */}
+    <linearGradient id="ch_shirt" x1="0" y1="0.1" x2="1" y2="0.9">
+      <stop offset="0%" stopColor="#5c6bc0" />
+      <stop offset="35%" stopColor="#1a237e" />
+      <stop offset="100%" stopColor="#020510" />
     </linearGradient>
-    {/* Pants: steel-blue highlight */}
-    <linearGradient id="ch_pants" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0%" stopColor="#62818f" />
-      <stop offset="48%" stopColor="#37474f" />
-      <stop offset="100%" stopColor="#17252b" />
+    {/* Pants: wide bright-to-dark sweep */}
+    <linearGradient id="ch_pants" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#7e9aaa" />
+      <stop offset="40%" stopColor="#37474f" />
+      <stop offset="100%" stopColor="#0e1519" />
     </linearGradient>
     {/* Boots */}
-    <linearGradient id="ch_boots" x1="0.1" y1="0" x2="0.8" y2="1">
-      <stop offset="0%" stopColor="#424242" />
-      <stop offset="100%" stopColor="#0d0d0d" />
+    <linearGradient id="ch_boots" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stopColor="#5a5a5a" />
+      <stop offset="100%" stopColor="#080808" />
     </linearGradient>
     {/* Belt */}
     <linearGradient id="ch_belt" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stopColor="#a1887f" />
-      <stop offset="100%" stopColor="#4e342e" />
+      <stop offset="0%" stopColor="#bcaaa4" />
+      <stop offset="100%" stopColor="#3e2723" />
     </linearGradient>
-    {/* Homeowner shirt: warm orange */}
-    <linearGradient id="ch_hoShirt" x1="0.08" y1="0" x2="0.92" y2="1">
-      <stop offset="0%" stopColor="#ffb74d" />
-      <stop offset="48%" stopColor="#e65100" />
-      <stop offset="100%" stopColor="#a83800" />
+    {/* Homeowner shirt: bright warm-yellow top, dark burnt-orange bottom */}
+    <linearGradient id="ch_hoShirt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#ffcc80" />
+      <stop offset="40%" stopColor="#e65100" />
+      <stop offset="100%" stopColor="#7a1e00" />
     </linearGradient>
-    {/* Homeowner jeans */}
-    <linearGradient id="ch_hoPants" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0%" stopColor="#7396c8" />
-      <stop offset="50%" stopColor="#4a6fa5" />
-      <stop offset="100%" stopColor="#283e6a" />
+    {/* Homeowner jeans: light denim to dark indigo */}
+    <linearGradient id="ch_hoPants" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#90b4e0" />
+      <stop offset="45%" stopColor="#4a6fa5" />
+      <stop offset="100%" stopColor="#172444" />
     </linearGradient>
     {/* Hair */}
-    <linearGradient id="ch_hair" x1="0.15" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stopColor="#795548" />
-      <stop offset="100%" stopColor="#3e2723" />
+    <linearGradient id="ch_hair" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stopColor="#a1887f" />
+      <stop offset="100%" stopColor="#2c1a14" />
     </linearGradient>
   </defs>
 );
